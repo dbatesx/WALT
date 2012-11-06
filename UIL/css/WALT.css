@@ -1,0 +1,1042 @@
+﻿body
+{
+    font-family: helvetica,verdana,arial,sans-serif;
+    font-size: 12px;
+}
+
+.MainPlaceHolder
+{
+    padding: 10px;
+    width: 100%;
+    height: 100%;
+}
+
+.btn
+{
+    margin: 0 10px 0 0;
+    background: url('images/btnbg.png');
+    color: #fff;
+    border: 1px solid #dedede;
+    width: auto;
+    overflow: visible;
+    border-top: 2px solid #eee;
+    border-left: 2px solid #eee;
+   /* font-family: helvetica,verdana,arial,sans-serif;*/
+    font-size: 100%;
+    line-height: 100%;
+    text-decoration: none;
+    cursor: pointer;
+    padding: 2px 6px 2px 6px; /* Links */
+}
+
+table.weeklyTbl
+{
+    border-collapse: collapse;
+}
+
+table.weeklyTbl tr.pBarrierRow
+{
+    background-color: #FFCCCC;
+}
+
+table.weeklyTbl tr.uBarrierRow
+{
+    background-color: #FFCCCC;
+}
+
+table.weeklyTbl tr.completed
+{
+    background-color: #CCFFCC;
+}
+
+table.weeklyTbl tr.obe
+{
+    background-color: #CCAAAA;
+}
+
+table.weeklyTbl tr.hold
+{
+    background-color: #FFEECC;
+}
+
+table.weeklyTbl th
+{
+    padding: 3px;
+   /* font-family: tahoma;*/
+    font-size: 9pt;
+    border-width: 1px 2px 2px 2px;
+    border-style: solid;
+    border-color: black;
+    background-color: #dddddd;
+}
+
+table.weeklyTbl th.field
+{
+    border-width: 1px 1px 2px 1px;
+}
+
+table.weeklyTbl th.field2
+{
+    border-width: 1px 3px 2px 1px;
+}
+
+table.weeklyTbl th.planDay
+{
+    border-width: 1px 2px 1px 2px;
+}
+
+table.weeklyTbl th.planDayWE
+{
+    border-width: 1px 2px 1px 2px;
+}
+
+table.weeklyTbl th.plan
+{
+    border-width: 1px 1px 2px 2px;
+}
+
+table.weeklyTbl th.planWE
+{
+    border-width: 1px 1px 2px 2px;
+}
+
+table.weeklyTbl th.actual
+{
+    border-width: 1px 2px 2px 1px;
+}
+
+table.weeklyTbl th.actualWE
+{
+    border-width: 1px 2px 2px 1px;
+}
+
+table.weeklyTbl th.totalRow
+{
+    border-width: 1px 2px 1px 1px;
+    text-align: right;
+}
+
+table.weeklyTbl th.totalRowPlan
+{
+    border-width: 1px 1px 1px 2px;
+    background-color: #FFFFCC;
+    text-align: right;
+}
+
+table.weeklyTbl th.barrierTotal
+{
+    border-width: 1px 2px 1px 2px;
+    background-color: #FFCCCC;
+    text-align: right;
+}
+
+table.weeklyTbl th.totalFooter
+{
+    border-width: 2px 2px 1px 1px;
+    text-align: right;
+}
+
+table.weeklyTbl th.totalFooterWE
+{
+    border-width: 2px 2px 1px 1px;
+    text-align: right;
+}
+
+table.weeklyTbl th.totalFooterPlan
+{
+    border-width: 2px 1px 1px 2px;
+    background-color: #FFFFCC;
+    text-align: right;
+}
+
+table.weeklyTbl th.totalFooterPlanWE
+{
+    border-width: 2px 1px 1px 2px;
+    background-color: #FFFFCC;
+    text-align: right;
+}
+
+table.weeklyTbl th.totalText
+{
+    border-width: 2px 3px 1px 1px;
+    text-align: right;
+}
+
+table.weeklyTbl th.divider
+{
+    font-size: 12pt;
+    border-width: 2px 2px 2px 1px;
+    border-color: Black;
+    background-color: #CCDDFF;
+    text-align: left;
+}
+
+table.weeklyTbl td
+{
+    padding: 3px;
+ /*   font-family: tahoma;*/
+    font-size: 8.5pt;
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
+}
+
+table.weeklyTbl td.chkbox
+{
+    text-align: center;
+}
+
+table.weeklyTbl td.lastField
+{
+    border-width: 1px 3px 1px 1px;
+}
+
+table.weeklyTbl td.lastFieldChk
+{
+    border-width: 1px 3px 1px 1px;
+    text-align: center;
+}
+
+table.weeklyTbl td.lastFieldNum
+{
+    border-width: 1px 3px 1px 1px;
+    text-align: right;
+}
+
+table.weeklyTbl td.number
+{
+    text-align: right;
+}
+
+table.weeklyTbl td.planHour
+{
+    border-width: 1px 1px 0px 2px;
+    text-align: right;
+    background-color: #FFFFCC;
+}
+
+table.weeklyTbl td.planHourWE
+{
+    border-width: 1px 1px 0px 2px;
+    text-align: right;
+    background-color: #FFFFCC;
+}
+
+table.weeklyTbl td.compHour
+{
+    border-width: 1px 2px 0px 1px;
+    text-align: right;
+    background-color: #CCFFCC;
+}
+
+table.weeklyTbl td.compHourWE
+{
+    border-width: 1px 2px 0px 1px;
+    text-align: right;
+    background-color: #CCFFCC;
+}
+
+table.weeklyTbl td.compPlanHour
+{
+    border-width: 1px 1px 0px 2px;
+    text-align: right;
+    background-color: #CCFFCC;
+}
+
+table.weeklyTbl td.compPlanHourWE
+{
+    border-width: 1px 1px 0px 2px;
+    text-align: right;
+    background-color: #CCFFCC;
+}
+
+table.weeklyTbl td.hour
+{
+    border-width: 1px 2px 0px 1px;
+    text-align: right;
+    background-color: White;
+}
+
+table.weeklyTbl td.hourWE
+{
+    border-width: 1px 2px 0px 1px;
+    text-align: right;
+    background-color: White;
+}
+
+table.weeklyTbl td.barrierHour
+{
+    border-width: 1px 2px 0px 2px;
+    text-align: right;
+}
+
+table.weeklyTbl td.barrierHourWE
+{
+    border-width: 1px 2px 0px 2px;
+    text-align: right;
+}
+
+table.weeklyTbl td.inputHour
+{
+    border-width: 1px 2px 0px 1px;
+    text-align: right;
+    background-color: White;
+}
+
+table.weeklyTbl td.inputHourWE
+{
+    border-width: 1px 2px 0px 1px;
+    text-align: right;
+    background-color: White;
+}
+
+table.weeklyTbl td.inputHourComp
+{
+    border-width: 1px 2px 0px 1px;
+    text-align: right;
+    background-color: #CCFFCC;
+}
+
+table.weeklyTbl td.inputHourCompWE
+{
+    border-width: 1px 2px 0px 1px;
+    text-align: right;
+    background-color: #CCFFCC;
+}
+
+table.weeklyTbl td.inputBarrierHour
+{
+    border-width: 1px 2px 0px 2px;
+    text-align: right;
+}
+
+table.weeklyTbl td.inputBarrierHourWE
+{
+    border-width: 1px 2px 0px 2px;
+    text-align: right;
+}
+
+table.weeklyTbl td.totalHour
+{
+    text-align: right;
+}
+
+table.weeklyTbl td.lnkbtn
+{
+    padding: 3px 5px 3px 5px;
+    border: 0px;
+    font-size: 9pt;
+}
+
+table.weeklyOuterTbl
+{
+    padding: 1px;
+  /*  font-family: tahoma;*/
+    font-size: 9pt;
+}
+
+table.invisible
+{
+    padding: 0px;
+  /*  font-family: tahoma;*/
+    font-size: 8.5pt;
+    border-style: none;
+    border-collapse: collapse;
+    border-width: 0px;
+}
+
+table.invisible td
+{
+    padding: 0px;
+    border-style: none;
+    border-width: 0px;
+}
+
+.gridPageHeader
+{
+    background-color: #eaeaea;
+    margin-bottom: 5px;
+   
+}
+
+.gridPageHeader td
+{
+    
+}
+
+.ddStyle
+{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.Background
+{
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    filter: alpha(opacity=40);
+}
+
+.overlay
+{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    z-index: 1000000;
+    background-repeat: repeat-x;
+    background-position: top, left;
+}
+
+.gridWrapper
+{
+    width: 100%;
+    margin: 10px 0 10px 0;
+}
+
+Table.Gridview
+{
+    border: solid 1px #959595;
+    font-size: 11px;
+}
+
+.Gridview th
+{
+    background-color: #5d7b9d;
+    color: #FFFFFF;
+    border-right-color: #959595;
+    border-bottom-color: #959595;
+    padding: 0.5em 0.5em 0.5em 0.5em;
+    text-align: center;
+    font-size: 12px;
+}
+
+.Gridview th a:hover
+{
+    color: #373DA4;
+    text-decoration: none;
+}
+
+.Gridview th a:link
+{
+    color: #FFFFFF;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.Gridview td
+{
+    border-bottom-color: #f0f2da;
+    border-right-color: #f0f2da;
+    padding: 5px;
+}
+
+.Gridview tr
+{
+    color: Black;
+    background-color: White;
+    text-align: left;
+}
+
+.Gridview .alt
+{
+    color: Black;
+    text-align: left;
+    background-color: #F7F6F3;
+}
+
+.Gridview .pgr a
+{
+    color: #0066FF;
+    text-decoration: none;
+}
+
+.row-hover
+{
+    background: #FFD864;
+}
+
+.sortCell
+{
+    background: #ECE8E8;   
+}
+
+.sortCellTitle
+{
+    background: #ECE8E8;
+    min-width: 200px;
+    font-weight:bold;
+}
+
+.titleColumn
+{
+    min-width: 200px;
+    font-weight: bold;
+} 
+
+table.dialogTbl
+{
+    border-collapse: collapse;
+}
+
+table.dialogTbl td
+{
+    padding: 3px;
+ /*   font-family: tahoma;*/
+    font-size: 8.5pt;
+}
+
+table.treeTbl td
+{
+    padding: 0px;
+ /*   font-family: tahoma;*/
+    font-size: 8.5pt;
+}
+
+table.treeTbl td.tree
+{
+    -moz-appearance: textfield-multiline;
+    -webkit-appearance: textarea;
+    border: 1px solid #ABADB3;
+    font: medium -moz-fixed;
+    font: -webkit-small-control;
+    padding: 0px;
+    background: #ffffff;
+}
+
+.columnShadow
+{
+    -moz-box-shadow: 5px 5px 5px rgba(68,68,68,0.6);
+    -webkit-box-shadow: 5px 5px 5px rgba(68,68,68,0.6);
+    box-shadow: 5px 5px 5px rgba(68,68,68,0.6);
+    filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=3,MakeShadow=true,ShadowOpacity=0.30);
+    -ms-filter: "progid:DXImageTransform.Microsoft.Blur(PixelRadius=3,MakeShadow=true,ShadowOpacity=0.30)";
+    zoom: 1;
+}
+
+.columnSelector
+{
+    display: none;
+    background-color: white;
+}
+
+.columnSelectorWrapper
+{
+    width: 290px;
+    border-top-color: #959595;
+    border-right-color: #959595;
+    border-bottom-color: #959595;
+    border-left-color: #959595;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.dragHandle
+{
+    width: 15px;
+    height: 15px;
+    background-color: Blue;
+    background-image: url('images/bg-menu-main.png');
+    cursor: move;
+    border: outset thin white;
+    margin-left: 5px;
+    color: White;
+}
+.callbackStyle
+{
+    border: thin blue inset;
+}
+
+.callbackStyle table
+{
+    background-color: #5377A9;
+    color: Black;
+}
+
+.reorderListDemo LI.noview
+{
+    list-style: none;
+    margin: 2px;
+    background-color: Red;
+    color: #FFF;
+}
+.reorderListDemo LI.noview a
+{
+    color: #FFF !important;
+    font-weight: bold;
+}
+
+.reorderListDemo LI
+{
+    list-style: none;
+    margin: 2px;
+    background-image: url('images/bg_nav.gif');
+    background-repeat: repeat-x;
+    color: #FFF;
+}
+.reorderListDemo li a
+{
+    color: #FFF !important;
+    font-weight: bold;
+}
+.reorderCue
+{
+    border: dashed thin black;
+    width: 100%;
+    height: 25px;
+}
+.itemArea
+{
+    margin-left: 15px;
+ /*   font-family: Arial, Verdana, sans-serif;*/
+    font-size: 1em;
+    text-align: left;
+}
+.reorderListDemoTall li
+{
+    list-style: none;
+    margin: 2px;
+    background-color: Blue;
+    color: #FFF;
+}
+
+#sizeImage img
+{
+    width: 200px;
+    height: 100px;
+}
+
+.successMsg
+{
+    color: green;
+    font-size: 12px;
+}
+
+.errMsg
+{
+    color: #FF0000;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.ModalPopupBG
+{
+    background-color: #666699;
+    filter: alpha(opacity=50);
+    opacity: 0.7;
+}
+
+.PopupHeader
+{
+    color: #ffffff;
+    background-color: #284E98;
+    padding: 5px;
+    cursor: move;
+    font-weight: bold;
+    border: 3px solid #eeeeee;
+}
+
+.disabledButReadable[disabled]
+{
+    color: Black !important;
+}
+
+.PopupBody, .Controls
+{
+    background-color: #eeeeee;
+    margin: 10px;
+    padding: 5px;
+}
+
+.AddDMPopup, 
+.AddUsersPopup, 
+.AddDirectoratePopup, 
+.EditDirectoratePopup, 
+.AddDAPopup, 
+.AddDMPopup, 
+.AddTeamPopup, 
+.AddOrgCodesPopup, 
+.AddBarrierPopup,
+.AddUnplannedPopup,
+.AddTaskTypePopup,
+.AddComplexityCodePopup
+{
+    background-color: #eeeeee;
+    min-width: 200px;
+    min-height: 150px;
+}
+
+.TasksPageTreeView
+{
+    max-height: 300px;
+}
+
+.TasksPageTreeViewCell
+{
+    min-width: 320px;
+    vertical-align: top;
+}
+
+.TasksPageItemViewCell
+{
+    padding-left: 20px;
+    vertical-align: top;
+}
+
+.TasksPageItemViewActiveButton
+{
+    width: 306px;
+    height: 22px;
+    border: 1px solid gray;
+}
+
+.TasksPageItemViewActiveLabel
+{
+    width: 306px;
+    height: 19px;
+    border: 1px solid gray;
+    text-align: center;
+    padding-top: 3px;
+}
+
+.TasksPageLabels
+{
+    padding: 2px 2px 2px 2px;
+    height: 18px;
+}
+
+.TasksPageItemViewTitle
+{
+    width: 300px;
+}
+
+.TasksPageItemViewDescription
+{
+    width: 300px;
+    height: 100px;
+}
+
+.TasksPageItemViewCode
+{
+}
+
+.TasksPageItemViewSavePanel
+{
+    width: 320px;
+    text-align: right;
+}
+
+.TasksPageComplexityGrid
+{
+    width: 270px;
+}
+
+/* JQuery Override */
+
+.ui-dialog-titlebar
+{
+    background: #284E98;
+    border: #000000;
+    color: White;
+}
+
+.ui-widget input, 
+.ui-widget select, 
+.ui-widget textarea, 
+.ui-widget button 
+{
+  /*  font-family: Verdana;*/
+    font-size: 10pt;
+}
+
+.ui-widget-overlay
+{
+    background: #999999;
+}
+
+/* Progress */
+
+#progressBackgroundFilter 
+{
+    position:fixed;
+    top:0px;
+    bottom:0px;
+    left:0px;
+    right:0px;
+    overflow:hidden;
+    padding:0;
+    margin:0;
+    background-color:#000;
+    filter:alpha(opacity=50);
+    opacity:0.5;
+    z-index:1000;
+}
+
+#processMessage
+{
+    text-align: center;
+    position: fixed;
+    top: 30%;
+    left: 43%;
+    padding: 10px;
+    width: 14%;
+    z-index: 1001;
+    background-color: #fff;
+    border: solid 1px #000;
+}
+.taskTable
+{
+ 
+    }
+ .textCell
+{
+    width: 180px;
+    min-width:180px;
+    padding: 5px 7px 5px 7px;
+    border-top: 1px solid #C0C0C0;
+    border-left: 1px solid #C0C0C0;
+    white-space: nowrap;
+    vertical-align: top;
+    font-weight: bold;
+}
+.inputCell
+{
+    min-width: 500px;
+    width:500px;
+    background-color: #EBEBEB;
+    border-right: 1px solid #C0C0C0;
+    border-top: 1px solid #C0C0C0;
+    padding: 5px 7px 5px 7px;
+    vertical-align: top;
+}        
+.leftCell
+{
+    border-left: 1px solid #C0C0C0;
+    border-top-color: #C0C0C0;
+    border-left-color: #C0C0C0;
+    border-bottom-color: #C0C0C0;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-left-style: solid;
+    border-bottom-style: solid;
+}
+.SelectedNodeStyle
+{
+    text-decoration: underline;
+    color: black;
+}
+.treeNodeStyle a:visited
+{
+    color: Blue;
+}
+.btnStyleRight
+{
+    margin: 5px 0 5px 10px;
+    float:right;
+}
+
+.btnStyleLeft
+{
+    margin: 5px 0 5px 10px;
+    float:left;
+}
+
+.taskType
+{
+    width: 300px;
+    height: 300;
+    overflow-x: auto;
+    overflow-y: auto;
+    padding: 5px;
+    border: 1px solid #C0C0C0;
+}
+.imgBtnNav
+{
+    margin-left: 3px;
+    padding: 1px;
+}
+
+.tree td { 
+     vertical-align:top; 
+} 
+.filterWrapper
+{
+    background: #eaeaea;
+    padding: 10px;
+    display:none;
+}
+
+.filterDiv
+{
+    width: 100%;
+    padding:5px;      
+}
+
+.filterBtn
+{
+  
+}
+
+.taskGridWrapperDiv
+{
+    margin-top:5px;
+    }
+    
+.columnSelectorMenu a:link
+{
+    font-weight: bold;
+    color: #7a7a7a;
+  
+}     
+.columnSelectorMenu a:visited
+{
+    font-weight: bold;
+    color: #7a7a7a;
+}  
+.columnSelectorMenu a:hover
+{
+    font-weight: bold;
+    color: #7a7a7a;
+}  
+ .columnSelectorMenua:active
+{
+    font-weight: bold;
+    color: #7a7a7a;
+}  
+ 
+ .filterBtn a:link
+{
+    font-weight: bold;
+    color: #7a7a7a;
+}     
+.filterBtn a:visited
+{
+    font-weight: bold;
+    color: #7a7a7a;
+}  
+.filterBtn a:hover
+{
+    font-weight: bold;
+    color: #7a7a7a;
+}  
+ .filterBtn a:active
+{
+    font-weight: bold;
+    color: #7a7a7a;
+}  
+
+.staticSelectorMenu
+{
+    font-weight: bold;
+    color: #7a7a7a;
+}  
+
+.leftFilterCell
+{
+    width: 150px;
+    text-align: right;
+    padding: 5px;
+}
+
+.lbtnStyle A:visited
+{   
+    color: White;
+    font-weight:bold;
+    
+}  
+
+.lbtnStyle A:link
+{   
+    color: White;
+     font-weight:bold;
+} 
+
+.lbtnStyle A:active
+{   
+    color: White;
+     font-weight:bold;
+} 
+
+.lbtnStyle A:hover
+{   
+    color: White;
+     font-weight:bold;
+}
+
+
+
+.menueWrapper A:visited
+{   
+    color: White;
+    font-weight:bold; 
+    text-decoration:none; 
+    font-size:9pt;  
+    outline:none 
+
+}  
+
+.menueWrapper A:link
+{   
+    color: White;
+     font-weight:bold;
+      text-decoration:none; 
+       font-size:9pt; 
+       outline:none 
+    
+} 
+
+.menueWrapper A:active
+{   
+    color: White;
+     font-weight:bold;
+      text-decoration:none;   
+       font-size:9pt;  
+       outline:none 
+     
+} 
+
+.menueWrapper A:hover
+{   
+    color: White;
+     font-weight:bold;
+      text-decoration:none;   
+       font-size:9pt;  
+       outline:none 
+     
+}
+
+
+
+
+
+.menueClass A:visited
+{      
+    outline:none 
+
+}  
+
+.menueClass A:link
+{   
+    
+       outline:none 
+    
+} 
+
+.menueClass A:active
+{   
+   
+       outline:none 
+     
+} 
+
+.menueClass A:hover
+{   
+   
+       outline:none 
+     
+}
+
+
+

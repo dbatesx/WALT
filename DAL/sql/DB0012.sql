@@ -1,0 +1,1 @@
+﻿alter table tasks add originator bigint foreign key references profiles (id);

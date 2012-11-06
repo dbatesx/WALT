@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode title="Main" url="/Default.aspx">
+    <siteMapNode title="Task Queue" url="/Task/TaskQueuePage.aspx"/>
+    <siteMapNode title="Plan/Log" url="/weekly.aspx"/>
+    <siteMapNode title="Favorites" url="/favorites.aspx"/>
+    <siteMapNode title="Admin" url="/Admin/Roles.aspx#">
+      <siteMapNode title="Roles" url="/Admin/Roles.aspx" />
+      <siteMapNode title="Programs" url="/Admin/Programs.aspx"/>
+      <siteMapNode title="Profiles" url="/Admin/Profiles.aspx"/>
+      <siteMapNode title="Directorates" url="/Admin/Directorates.aspx"/>
+      <siteMapNode title="Teams" url="/Admin/Teams.aspx"/>
+      <siteMapNode title="Tasks" url="/Admin/Tasks.aspx"/>
+      <siteMapNode title="Active Directory" url="/Admin/ActiveDirectory.aspx"/>
+      <siteMapNode title="Status" url="/Admin/Status.aspx"/>
+    </siteMapNode>
+    <siteMapNode title="Reports" url="/Reports/ReportSelect.aspx"/>
+    <siteMapNode title="Preferences" url="/UserPreferences.aspx"/>
+    <siteMapNode title="Help">
+      <siteMapNode title="Submit Ticket"/>
+      <siteMapNode title="Release Notes"/>
+      <siteMapNode title="FAQ"/>
+    </siteMapNode>
+  </siteMapNode>
+</siteMap>

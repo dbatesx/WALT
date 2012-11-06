@@ -1,0 +1,603 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{647A646B-78A9-4B13-8CEC-2E6868159850}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WALT.UIL</RootNamespace>
+    <AssemblyName>WALT.UIL</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <TargetFrameworkProfile />
+    <UseIISExpress>false</UseIISExpress>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DeployIisAppPath>\\vaintradev02\c%24\WALT</DeployIisAppPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <FilesToIncludeForPublish>OnlyFilesToRunTheApp</FilesToIncludeForPublish>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisLogFile>bin\WALT.UIL.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisLogFile>bin\WALT.UIL.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisLogFile>bin\WALT.UIL.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisLogFile>bin\WALT.UIL.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=3.5.51116.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\AjaxControlToolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Admin\ImportTaskTypes.aspx" />
+    <Content Include="app_offline.html" />
+    <Content Include="Controls\AlertPanel.ascx" />
+    <Content Include="Controls\TaskBarriers.ascx" />
+    <Content Include="Controls\TaskGrid.ascx" />
+    <Content Include="Controls\TaskTypes.ascx" />
+    <Content Include="Controls\TaskUnplannedCodes.ascx" />
+    <Content Include="Controls\TeamSummary.ascx" />
+    <Content Include="css\images\ajax-loader.gif" />
+    <Content Include="css\images\arrow-next-20.png" />
+    <Content Include="css\images\arrow-next.png" />
+    <Content Include="css\images\arrow-prev-20.png" />
+    <Content Include="css\images\arrow-prev.png" />
+    <Content Include="css\images\arrow_down.png" />
+    <Content Include="css\images\arrow_down_white.png" />
+    <Content Include="css\images\arrow_right.png" />
+    <Content Include="css\images\arrow_up_white.png" />
+    <Content Include="css\images\base_task_icon.png" />
+    <Content Include="css\images\bg-menu-main.png" />
+    <Content Include="css\images\bg_nav.gif" />
+    <Content Include="css\images\bg_nav_red.gif" />
+    <Content Include="css\images\bg_nav_red.png" />
+    <Content Include="css\images\btnbg.png" />
+    <Content Include="css\images\bullet-blue.gif" />
+    <Content Include="css\images\bullet.gif" />
+    <Content Include="css\images\calendar.gif" />
+    <Content Include="css\images\Close-2-icon.png" />
+    <Content Include="css\images\DownButton.png" />
+    <Content Include="css\images\formtitlegrad_jet.gif" />
+    <Content Include="css\images\instantiated_task_icon.png" />
+    <Content Include="css\images\Letter-I-blue-icon.png" />
+    <Content Include="css\images\parent_task_icon.png" />
+    <Content Include="css\images\search-icon.png" />
+    <Content Include="css\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="css\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="css\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="css\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="css\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="css\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="css\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="css\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="css\images\ui-icons_454545_256x240.png" />
+    <Content Include="css\images\ui-icons_888888_256x240.png" />
+    <Content Include="css\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="css\images\search.png" />
+    <Content Include="css\images\uninstantiated_task_icon.png" />
+    <Content Include="css\images\UpButton.png" />
+    <Content Include="css\jquery.css" />
+    <Content Include="css\jquery.ui.accordion.css" />
+    <Content Include="css\jquery.ui.all.css" />
+    <Content Include="css\jquery.ui.autocomplete.css" />
+    <Content Include="css\jquery.ui.base.css" />
+    <Content Include="css\jquery.ui.button.css" />
+    <Content Include="css\jquery.ui.core.css" />
+    <Content Include="css\jquery.ui.datepicker.css" />
+    <Content Include="css\jquery.ui.dialog.css" />
+    <Content Include="css\jquery.ui.progressbar.css" />
+    <Content Include="css\jquery.ui.resizable.css" />
+    <Content Include="css\jquery.ui.selectable.css" />
+    <Content Include="css\jquery.ui.slider.css" />
+    <Content Include="css\jquery.ui.tabs.css" />
+    <Content Include="css\jquery.ui.theme.css" />
+    <Content Include="css\WALT.css" />
+    <Content Include="Default.aspx" />
+    <Content Include="ErrorPage.aspx" />
+    <Content Include="favicon.ico" />
+    <Content Include="favorites.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="images\calendar_icon.jpg" />
+    <Content Include="images\logo.jpg" />
+    <Content Include="images\pointer-left.png" />
+    <Content Include="images\pointer-right.png" />
+    <Content Include="js\weekly.js" />
+    <Content Include="js\jquery-1.4.3.min.js" />
+    <Content Include="js\jquery.ui.button.js" />
+    <Content Include="js\jquery.ui.core.js" />
+    <Content Include="js\jquery.ui.datepicker.js" />
+    <Content Include="js\jquery.ui.widget.js" />
+    <Content Include="Admin\Status.aspx" />
+    <Content Include="login.aspx" />
+    <Content Include="ping.aspx" />
+    <Content Include="Reports\ReportSelect.aspx" />
+    <Content Include="Reports\ReportDownload.aspx" />
+    <Content Include="Task\TaskForm.aspx" />
+    <Content Include="Task\Import.aspx" />
+    <Content Include="Admin\ActiveDirectory.aspx" />
+    <Content Include="Task\TaskQueuePage.aspx" />
+    <Content Include="Task\ViewTask.aspx" />
+    <Content Include="UserPreferences.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Admin\Directorates.aspx.cs">
+      <DependentUpon>Directorates.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Directorates.aspx.designer.cs">
+      <DependentUpon>Directorates.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ImportTaskTypes.aspx.cs">
+      <DependentUpon>ImportTaskTypes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ImportTaskTypes.aspx.designer.cs">
+      <DependentUpon>ImportTaskTypes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Profiles.aspx.cs">
+      <DependentUpon>Profiles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Profiles.aspx.designer.cs">
+      <DependentUpon>Profiles.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Programs.aspx.cs">
+      <DependentUpon>Programs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Programs.aspx.designer.cs">
+      <DependentUpon>Programs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Roles.aspx.cs">
+      <DependentUpon>Roles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Roles.aspx.designer.cs">
+      <DependentUpon>Roles.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Tasks.aspx.cs">
+      <DependentUpon>Tasks.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Tasks.aspx.designer.cs">
+      <DependentUpon>Tasks.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Teams.aspx.cs">
+      <DependentUpon>Teams.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Teams.aspx.designer.cs">
+      <DependentUpon>Teams.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\AlertPanel.ascx.cs">
+      <DependentUpon>AlertPanel.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\AlertPanel.ascx.designer.cs">
+      <DependentUpon>AlertPanel.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\GridColList.cs" />
+    <Compile Include="Controls\ProfileSelector.ascx.cs">
+      <DependentUpon>ProfileSelector.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ProfileSelector.ascx.designer.cs">
+      <DependentUpon>ProfileSelector.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TaskBarriers.ascx.cs">
+      <DependentUpon>TaskBarriers.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\TaskBarriers.ascx.designer.cs">
+      <DependentUpon>TaskBarriers.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TaskGrid.ascx.cs">
+      <DependentUpon>TaskGrid.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\TaskGrid.ascx.designer.cs">
+      <DependentUpon>TaskGrid.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TaskTypes.ascx.cs">
+      <DependentUpon>TaskTypes.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\TaskTypes.ascx.designer.cs">
+      <DependentUpon>TaskTypes.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TaskUnplannedCodes.ascx.cs">
+      <DependentUpon>TaskUnplannedCodes.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\TaskUnplannedCodes.ascx.designer.cs">
+      <DependentUpon>TaskUnplannedCodes.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TeamSummary.ascx.cs">
+      <DependentUpon>TeamSummary.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\TeamSummary.ascx.designer.cs">
+      <DependentUpon>TeamSummary.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TreeSelector.ascx.cs">
+      <DependentUpon>TreeSelector.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\TreeSelector.ascx.designer.cs">
+      <DependentUpon>TreeSelector.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="DataSources\AlertDataSource.cs" />
+    <Compile Include="DataSources\TaskListDataSource.cs" />
+    <Compile Include="Default.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorPage.aspx.cs">
+      <DependentUpon>ErrorPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ErrorPage.aspx.designer.cs">
+      <DependentUpon>ErrorPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="favorites.aspx.cs">
+      <DependentUpon>favorites.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="favorites.aspx.designer.cs">
+      <DependentUpon>favorites.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Status.aspx.cs">
+      <DependentUpon>Status.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Status.aspx.designer.cs">
+      <DependentUpon>Status.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="login.aspx.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="login.aspx.designer.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ping.aspx.cs">
+      <DependentUpon>ping.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ping.aspx.designer.cs">
+      <DependentUpon>ping.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\ReportSelect.aspx.cs">
+      <DependentUpon>ReportSelect.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\ReportSelect.aspx.designer.cs">
+      <DependentUpon>ReportSelect.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\ReportDownload.aspx.cs">
+      <DependentUpon>ReportDownload.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\ReportDownload.aspx.designer.cs">
+      <DependentUpon>ReportDownload.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Task\TaskForm.aspx.cs">
+      <DependentUpon>TaskForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Task\TaskForm.aspx.designer.cs">
+      <DependentUpon>TaskForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Task\Import.aspx.cs">
+      <DependentUpon>Import.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Task\Import.aspx.designer.cs">
+      <DependentUpon>Import.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ActiveDirectory.aspx.cs">
+      <DependentUpon>ActiveDirectory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ActiveDirectory.aspx.designer.cs">
+      <DependentUpon>ActiveDirectory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Task\TaskQueuePage.aspx.cs">
+      <DependentUpon>TaskQueuePage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Task\TaskQueuePage.aspx.designer.cs">
+      <DependentUpon>TaskQueuePage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Task\ViewTask.aspx.cs">
+      <DependentUpon>ViewTask.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Task\ViewTask.aspx.designer.cs">
+      <DependentUpon>ViewTask.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserPreferences.aspx.cs">
+      <DependentUpon>UserPreferences.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserPreferences.aspx.designer.cs">
+      <DependentUpon>UserPreferences.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="weekly.aspx.cs">
+      <DependentUpon>weekly.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="weekly.aspx.designer.cs">
+      <DependentUpon>weekly.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\ReportView.aspx.cs">
+      <DependentUpon>ReportView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\ReportView.aspx.designer.cs">
+      <DependentUpon>ReportView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Site1.Master.cs">
+      <DependentUpon>Site1.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site1.Master.designer.cs">
+      <DependentUpon>Site1.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Utility.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BLL\BLL.csproj">
+      <Project>{ADB38E7F-6C92-487B-9A77-5E5B1E5C7CA0}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DTO\DTO.csproj">
+      <Project>{7D329932-9310-491A-A648-451F6E667AD6}</Project>
+      <Name>DTO</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Admin\Roles.aspx" />
+    <Content Include="css\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <Content Include="css\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <Content Include="css\images\ui-bg_flat_10_000000_40x100.png" />
+    <Content Include="css\images\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="css\images\ui-bg_glass_100_fdf5ce_1x400.png" />
+    <Content Include="css\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="css\images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <Content Include="css\images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <Content Include="css\images\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+    <Content Include="css\images\ui-icons_222222_256x240.png" />
+    <Content Include="css\images\ui-icons_228ef1_256x240.png" />
+    <Content Include="css\images\ui-icons_ef8c08_256x240.png" />
+    <Content Include="css\images\ui-icons_ffd27a_256x240.png" />
+    <Content Include="css\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="css\jquery-ui.css" />
+    <Content Include="js\jquery-ui.js" />
+    <Content Include="Reports\ReportView.aspx" />
+    <Content Include="js\jquery.js" />
+    <Content Include="weekly.aspx" />
+    <Content Include="Site1.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Reports\Report1.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Reports\Report2.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Admin\Directorates.aspx" />
+    <Content Include="Admin\Profiles.aspx" />
+    <Content Include="Admin\Programs.aspx" />
+    <Content Include="Admin\Tasks.aspx" />
+    <Content Include="Admin\Teams.aspx" />
+    <Content Include="Controls\ProfileSelector.ascx" />
+    <Content Include="Controls\TreeSelector.ascx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Classes\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Reports\auditReportParticipationTable.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\operatingReportGraph.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\paretoReportRaw.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\Report1a.rdlc">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\SummaryReportTable.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\Report2a.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web.sitemap">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Task\TaskTemplate.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Reports\waltTeamInfo.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Reports\operatingReportTable.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Task\BlankTemplate.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Admin\TaskTypeTemplate.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <Target Name="BeforeBuild">
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>54574</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>True</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

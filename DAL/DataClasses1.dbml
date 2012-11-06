@@ -1,0 +1,499 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="WALT_BETA_TEST" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=VAINTRADEV02;Initial Catalog=WALT_BETA_TEST;Integrated Security=True" SettingsObjectName="WALT.DAL.Properties.Settings" SettingsPropertyName="WALT_BETA_TESTConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.actions" Member="actions">
+    <Type Name="action">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="title" Type="System.String" DbType="VarChar(32) NOT NULL" CanBeNull="false" />
+      <Association Name="action_role_action" Member="role_actions" ThisKey="id" OtherKey="action_id" Type="role_action" />
+    </Type>
+  </Table>
+  <Table Name="dbo.weekly_tasks" Member="weekly_tasks">
+    <Type Name="weekly_task">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="weekly_plan_id" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="task_id" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="unplanned" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="unplanned_code_id" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="comment" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="plan_day_complete" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="actual_day_complete" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="weekly_task_weekly_task_barrier" Member="weekly_task_barriers" ThisKey="id" OtherKey="weekly_task_id" Type="weekly_task_barrier" />
+      <Association Name="weekly_task_weekly_task_hour" Member="weekly_task_hours" ThisKey="id" OtherKey="weekly_task_id" Type="weekly_task_hour" />
+      <Association Name="task_weekly_task" Member="task" ThisKey="task_id" OtherKey="id" Type="task" IsForeignKey="true" />
+      <Association Name="unplanned_code_weekly_task" Member="unplanned_code" ThisKey="unplanned_code_id" OtherKey="id" Type="unplanned_code" IsForeignKey="true" />
+      <Association Name="weekly_plan_weekly_task" Member="weekly_plan" ThisKey="weekly_plan_id" OtherKey="id" Type="weekly_plan" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.alerts" Member="alerts">
+    <Type Name="alert">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="profile_id" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="creator_id" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="entry_date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="subject" Type="System.String" DbType="VarChar(256) NOT NULL" CanBeNull="false" />
+      <Column Name="message" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="linked_id" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="linked_type" Type="System.String" DbType="VarChar(16)" CanBeNull="true" />
+      <Column Name="acknowledged" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="profile_alert" Member="profile" ThisKey="creator_id" OtherKey="id" Type="profile" IsForeignKey="true" />
+      <Association Name="profile_alert1" Member="profile1" ThisKey="profile_id" OtherKey="id" Type="profile" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.barriers" Member="barriers">
+    <Type Name="barrier">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="team_id" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="parent_id" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="code" Type="System.String" DbType="VarChar(32) NOT NULL" CanBeNull="false" />
+      <Column Name="title" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="barrier_barrier" Member="barriers" ThisKey="id" OtherKey="parent_id" Type="barrier" />
+      <Association Name="barrier_barriers_description" Member="barriers_descriptions" ThisKey="id" OtherKey="barrier_id" Type="barriers_description" />
+      <Association Name="barrier_team_barrier" Member="team_barriers" ThisKey="id" OtherKey="barrier_id" Type="team_barrier" />
+      <Association Name="barrier_weekly_task_barrier" Member="weekly_task_barriers" ThisKey="id" OtherKey="barrier_id" Type="weekly_task_barrier" />
+      <Association Name="barrier_barrier" Member="barrier1" ThisKey="parent_id" OtherKey="id" Type="barrier" IsForeignKey="true" />
+      <Association Name="team_barrier" Member="team" ThisKey="team_id" OtherKey="id" Type="team" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.barriers_descriptions" Member="barriers_descriptions">
+    <Type Name="barriers_description">
+      <Column Name="team_id" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="barrier_id" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="barrier_barriers_description" Member="barrier" ThisKey="barrier_id" OtherKey="id" Type="barrier" IsForeignKey="true" />
+      <Association Name="team_barriers_description" Member="team" ThisKey="team_id" OtherKey="id" Type="team" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.complexities" Member="complexities">
+    <Type Name="complexity">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="team_id" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="task_type_id" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="title" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="hours" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="sort_order" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="complexity_favorite" Member="favorites" ThisKey="id" OtherKey="complexity_id" Type="favorite" />
+      <Association Name="complexity_task" Member="tasks" ThisKey="id" OtherKey="complexity_id" Type="task" />
+      <Association Name="task_type_complexity" Member="task_type" ThisKey="task_type_id" OtherKey="id" Type="task_type" IsForeignKey="true" />
+      <Association Name="team_complexity" Member="team" ThisKey="team_id" OtherKey="id" Type="team" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.favorite_plan_hours" Member="favorite_plan_hours">
+    <Type Name="favorite_plan_hour">
+      <Column Name="favorite_id" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="day_of_week" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="hours" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Association Name="favorite_favorite_plan_hour" Member="favorite" ThisKey="favorite_id" OtherKey="id" Type="favorite" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.favorites" Member="favorites">
+    <Type Name="favorite">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="profile_id" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="program_id" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="complexity_id" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="task_type_id" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="title" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="hours" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="estimate" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="template" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="favorite_favorite_plan_hour" Member="favorite_plan_hours" ThisKey="id" OtherKey="favorite_id" Type="favorite_plan_hour" />
+      <Association Name="complexity_favorite" Member="complexity" ThisKey="complexity_id" OtherKey="id" Type="complexity" IsForeignKey="true" />
+      <Association Name="profile_favorite" Member="profile" ThisKey="profile_id" OtherKey="id" Type="profile" IsForeignKey="true" />
+      <Association Name="program_favorite" Member="program" ThisKey="program_id" OtherKey="id" Type="program" IsForeignKey="true" />
+      <Association Name="task_type_favorite" Member="task_type" ThisKey="task_type_id" OtherKey="id" Type="task_type" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[log]" Member="logs">
+    <Type Name="log">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="entry_date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="profile_id" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="category" Type="System.String" DbType="VarChar(32) NOT NULL" CanBeNull="false" />
+      <Column Name="source_id" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="comment" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="entry_type" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+      <Association Name="profile_log" Member="profile" ThisKey="profile_id" OtherKey="id" Type="profile" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.patches" Member="patches">
+    <Type Name="patch">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(32) NOT NULL" CanBeNull="false" />
+      <Column Name="installed" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.preferences" Member="preferences">
+    <Type Name="preference">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="profile_id" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(32) NOT NULL" CanBeNull="false" />
+      <Column Name="value" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Association Name="profile_preference" Member="profile" ThisKey="profile_id" OtherKey="id" Type="profile" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.profile_log" Member="profile_logs">
+    <Type Name="profile_log">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="profile_id" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="entry_date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="category" Type="System.String" DbType="VarChar(32) NOT NULL" CanBeNull="false" />
+      <Column Name="comment" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="source_id" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Association Name="profile_profile_log" Member="profile" ThisKey="profile_id" OtherKey="id" Type="profile" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.profiles" Member="profiles">
+    <Type Name="profile">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="username" Type="System.String" DbType="VarChar(32) NOT NULL" CanBeNull="false" />
+      <Column Name="display_name" Type="System.String" DbType="VarChar(64)" CanBeNull="true" />
+      <Column Name="employee_id" Type="System.String" DbType="VarChar(32)" CanBeNull="true" />
+      <Column Name="exempt_plan" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="exempt_task" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="can_task" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="org_code" Type="System.String" DbType="VarChar(32)" CanBeNull="true" />
+      <Column Name="manager" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Association Name="profile_alert" Member="alerts" ThisKey="id" OtherKey="creator_id" Type="alert" />
+      <Association Name="profile_alert1" Member="alerts1" ThisKey="id" OtherKey="profile_id" Type="alert" />
+      <Association Name="profile_favorite" Member="favorites" ThisKey="id" OtherKey="profile_id" Type="favorite" />
+      <Association Name="profile_log" Member="logs" ThisKey="id" OtherKey="profile_id" Type="log" />
+      <Association Name="profile_preference" Member="preferences" ThisKey="id" OtherKey="profile_id" Type="preference" />
+      <Association Name="profile_profile_log" Member="profile_logs" ThisKey="id" OtherKey="profile_id" Type="profile_log" />
+      <Association Name="profile_profile" Member="profiles" ThisKey="id" OtherKey="manager" Type="profile" />
+      <Association Name="profile_report_group_profile" Member="report_group_profiles" ThisKey="id" OtherKey="profile_id" Type="report_group_profile" />
+      <Association Name="profile_report_group" Member="report_groups" ThisKey="id" OtherKey="profile_id" Type="report_group" />
+      <Association Name="profile_report" Member="reports" ThisKey="id" OtherKey="profile_id" Type="report" />
+      <Association Name="profile_role_profile" Member="role_profiles" ThisKey="id" OtherKey="profile_id" Type="role_profile" />
+      <Association Name="profile_task_issue" Member="task_issues" ThisKey="id" OtherKey="profile_id" Type="task_issue" />
+      <Association Name="profile_task" Member="tasks" ThisKey="id" OtherKey="originator" Type="task" />
+      <Association Name="profile_task1" Member="tasks1" ThisKey="id" OtherKey="owner_id" Type="task" />
+      <Association Name="profile_task2" Member="tasks2" ThisKey="id" OtherKey="profile_id" Type="task" />
+      <Association Name="profile_team_profile" Member="team_profiles" ThisKey="id" OtherKey="profile_id" Type="team_profile" />
+      <Association Name="profile_team" Member="teams" ThisKey="id" OtherKey="owner_id" Type="team" />
+      <Association Name="profile_weekly_plan" Member="weekly_plans" ThisKey="id" OtherKey="log_approved_by" Type="weekly_plan" />
+      <Association Name="profile_weekly_plan1" Member="weekly_plans1" ThisKey="id" OtherKey="plan_approved_by" Type="weekly_plan" />
+      <Association Name="profile_weekly_plan2" Member="weekly_plans2" ThisKey="id" OtherKey="profile_id" Type="weekly_plan" />
+      <Association Name="profile_profile" Member="profile1" ThisKey="manager" OtherKey="id" Type="profile" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.programs" Member="programs">
+    <Type Name="program">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="title" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="program_favorite" Member="favorites" ThisKey="id" OtherKey="program_id" Type="favorite" />
+      <Association Name="program_task" Member="tasks" ThisKey="id" OtherKey="program_id" Type="task" />
+    </Type>
+  </Table>
+  <Table Name="dbo.report_group_groups" Member="report_group_groups">
+    <Type Name="report_group_group">
+      <Column Name="parent_group_id" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="child_group_id" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="report_group_report_group_group" Member="report_group" ThisKey="child_group_id" OtherKey="id" Type="report_group" IsForeignKey="true" />
+      <Association Name="report_group_report_group_group1" Member="report_group1" ThisKey="parent_group_id" OtherKey="id" Type="report_group" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.report_group_profiles" Member="report_group_profiles">
+    <Type Name="report_group_profile">
+      <Column Name="report_group_id" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="profile_id" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="profile_report_group_profile" Member="profile" ThisKey="profile_id" OtherKey="id" Type="profile" IsForeignKey="true" />
+      <Association Name="report_group_report_group_profile" Member="report_group" ThisKey="report_group_id" OtherKey="id" Type="report_group" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.report_group_teams" Member="report_group_teams">
+    <Type Name="report_group_team">
+      <Column Name="report_group_id" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="team_id" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="report_group_report_group_team" Member="report_group" ThisKey="report_group_id" OtherKey="id" Type="report_group" IsForeignKey="true" />
+      <Association Name="team_report_group_team" Member="team" ThisKey="team_id" OtherKey="id" Type="team" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.report_groups" Member="report_groups">
+    <Type Name="report_group">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="title" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="profile_id" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="public_flag" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="report_group_report_group_group" Member="report_group_groups" ThisKey="id" OtherKey="child_group_id" Type="report_group_group" />
+      <Association Name="report_group_report_group_group1" Member="report_group_groups1" ThisKey="id" OtherKey="parent_group_id" Type="report_group_group" />
+      <Association Name="report_group_report_group_profile" Member="report_group_profiles" ThisKey="id" OtherKey="report_group_id" Type="report_group_profile" />
+      <Association Name="report_group_report_group_team" Member="report_group_teams" ThisKey="id" OtherKey="report_group_id" Type="report_group_team" />
+      <Association Name="report_group_report" Member="reports" ThisKey="id" OtherKey="report_group_id" Type="report" />
+      <Association Name="profile_report_group" Member="profile" ThisKey="profile_id" OtherKey="id" Type="profile" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.reports" Member="reports">
+    <Type Name="report">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="profile_id" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="report_group_id" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="title" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="public_flag" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="type" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="from_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="to_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="percent_base" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="percent_goal" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="attributes" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Association Name="profile_report" Member="profile" ThisKey="profile_id" OtherKey="id" Type="profile" IsForeignKey="true" />
+      <Association Name="report_group_report" Member="report_group" ThisKey="report_group_id" OtherKey="id" Type="report_group" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.role_actions" Member="role_actions">
+    <Type Name="role_action">
+      <Column Name="role_id" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="action_id" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="action_role_action" Member="action" ThisKey="action_id" OtherKey="id" Type="action" IsForeignKey="true" />
+      <Association Name="role_role_action" Member="role" ThisKey="role_id" OtherKey="id" Type="role" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.role_profiles" Member="role_profiles">
+    <Type Name="role_profile">
+      <Column Name="role_id" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="profile_id" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="profile_role_profile" Member="profile" ThisKey="profile_id" OtherKey="id" Type="profile" IsForeignKey="true" />
+      <Association Name="role_role_profile" Member="role" ThisKey="role_id" OtherKey="id" Type="role" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.roles" Member="roles">
+    <Type Name="role">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="title" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="role_role_action" Member="role_actions" ThisKey="id" OtherKey="role_id" Type="role_action" />
+      <Association Name="role_role_profile" Member="role_profiles" ThisKey="id" OtherKey="role_id" Type="role_profile" />
+    </Type>
+  </Table>
+  <Table Name="dbo.task_issues" Member="task_issues">
+    <Type Name="task_issue">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="task_id" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="profile_id" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="elevate" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="comment" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="acknowleged" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="profile_task_issue" Member="profile" ThisKey="profile_id" OtherKey="id" Type="profile" IsForeignKey="true" />
+      <Association Name="task_task_issue" Member="task" ThisKey="task_id" OtherKey="id" Type="task" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.task_types" Member="task_types">
+    <Type Name="task_type">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="parent_id" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="team_id" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="title" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="task_type_complexity" Member="complexities" ThisKey="id" OtherKey="task_type_id" Type="complexity" />
+      <Association Name="task_type_favorite" Member="favorites" ThisKey="id" OtherKey="task_type_id" Type="favorite" />
+      <Association Name="task_type_task_type" Member="task_types" ThisKey="id" OtherKey="parent_id" Type="task_type" />
+      <Association Name="task_type_task" Member="tasks" ThisKey="id" OtherKey="task_type_id" Type="task" />
+      <Association Name="task_type_team_task_type" Member="team_task_types" ThisKey="id" OtherKey="task_type_id" Type="team_task_type" />
+      <Association Name="task_type_task_type" Member="task_type1" ThisKey="parent_id" OtherKey="id" Type="task_type" IsForeignKey="true" />
+      <Association Name="team_task_type" Member="team" ThisKey="team_id" OtherKey="id" Type="team" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tasks" Member="tasks">
+    <Type Name="task">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="parent_id" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="task_type_id" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="profile_id" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="owner_id" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="program_id" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="complexity_id" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="title" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="source" Type="System.String" DbType="VarChar(32) NOT NULL" CanBeNull="false" />
+      <Column Name="source_id" Type="System.String" DbType="VarChar(64) NOT NULL" CanBeNull="false" />
+      <Column Name="start_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="due_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="status" Type="System.String" DbType="VarChar(16) NOT NULL" CanBeNull="false" />
+      <Column Name="hours" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="completed_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="estimate" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="exit_criteria" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="wbs" Type="System.String" DbType="VarChar(64)" CanBeNull="true" />
+      <Column Name="owner_comments" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="assignee_comments" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="created" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="on_hold_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="instantiated" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="fully_allocated" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="deleted" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="modified" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="originator" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Association Name="task_weekly_task" Member="weekly_tasks" ThisKey="id" OtherKey="task_id" Type="weekly_task" />
+      <Association Name="task_task_issue" Member="task_issues" ThisKey="id" OtherKey="task_id" Type="task_issue" />
+      <Association Name="task_task" Member="tasks" ThisKey="id" OtherKey="parent_id" Type="task" />
+      <Association Name="complexity_task" Member="complexity" ThisKey="complexity_id" OtherKey="id" Type="complexity" IsForeignKey="true" />
+      <Association Name="profile_task" Member="profile" ThisKey="originator" OtherKey="id" Type="profile" IsForeignKey="true" />
+      <Association Name="profile_task1" Member="profile1" ThisKey="owner_id" OtherKey="id" Type="profile" IsForeignKey="true" />
+      <Association Name="task_task" Member="task1" ThisKey="parent_id" OtherKey="id" Type="task" IsForeignKey="true" />
+      <Association Name="profile_task2" Member="profile2" ThisKey="profile_id" OtherKey="id" Type="profile" IsForeignKey="true" />
+      <Association Name="program_task" Member="program" ThisKey="program_id" OtherKey="id" Type="program" IsForeignKey="true" />
+      <Association Name="task_type_task" Member="task_type" ThisKey="task_type_id" OtherKey="id" Type="task_type" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.team_barriers" Member="team_barriers">
+    <Type Name="team_barrier">
+      <Column Name="team_id" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="barrier_id" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="barrier_team_barrier" Member="barrier" ThisKey="barrier_id" OtherKey="id" Type="barrier" IsForeignKey="true" />
+      <Association Name="team_team_barrier" Member="team" ThisKey="team_id" OtherKey="id" Type="team" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.team_org_codes" Member="team_org_codes">
+    <Type Name="team_org_code">
+      <Column Name="team_id" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="org_code" Type="System.String" DbType="VarChar(32) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="team_team_org_code" Member="team" ThisKey="team_id" OtherKey="id" Type="team" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.team_profiles" Member="team_profiles">
+    <Type Name="team_profile">
+      <Column Name="team_id" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="profile_id" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="role" Type="System.String" DbType="VarChar(16) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="profile_team_profile" Member="profile" ThisKey="profile_id" OtherKey="id" Type="profile" IsForeignKey="true" />
+      <Association Name="team_team_profile" Member="team" ThisKey="team_id" OtherKey="id" Type="team" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.team_task_types" Member="team_task_types">
+    <Type Name="team_task_type">
+      <Column Name="team_id" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="task_type_id" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="task_type_team_task_type" Member="task_type" ThisKey="task_type_id" OtherKey="id" Type="task_type" IsForeignKey="true" />
+      <Association Name="team_team_task_type" Member="team" ThisKey="team_id" OtherKey="id" Type="team" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.team_unplanned_codes" Member="team_unplanned_codes">
+    <Type Name="team_unplanned_code">
+      <Column Name="team_id" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="unplanned_code_id" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="team_team_unplanned_code" Member="team" ThisKey="team_id" OtherKey="id" Type="team" IsForeignKey="true" />
+      <Association Name="unplanned_code_team_unplanned_code" Member="unplanned_code" ThisKey="unplanned_code_id" OtherKey="id" Type="unplanned_code" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.teams" Member="teams">
+    <Type Name="team">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="parent_id" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="title" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="complexity_based" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="owner_id" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="type" Type="System.String" DbType="VarChar(32) NOT NULL" CanBeNull="false" />
+      <Association Name="team_barrier" Member="barriers" ThisKey="id" OtherKey="team_id" Type="barrier" />
+      <Association Name="team_barriers_description" Member="barriers_descriptions" ThisKey="id" OtherKey="team_id" Type="barriers_description" />
+      <Association Name="team_complexity" Member="complexities" ThisKey="id" OtherKey="team_id" Type="complexity" />
+      <Association Name="team_report_group_team" Member="report_group_teams" ThisKey="id" OtherKey="team_id" Type="report_group_team" />
+      <Association Name="team_task_type" Member="task_types" ThisKey="id" OtherKey="team_id" Type="task_type" />
+      <Association Name="team_team_barrier" Member="team_barriers" ThisKey="id" OtherKey="team_id" Type="team_barrier" />
+      <Association Name="team_team_org_code" Member="team_org_codes" ThisKey="id" OtherKey="team_id" Type="team_org_code" />
+      <Association Name="team_team_profile" Member="team_profiles" ThisKey="id" OtherKey="team_id" Type="team_profile" />
+      <Association Name="team_team_task_type" Member="team_task_types" ThisKey="id" OtherKey="team_id" Type="team_task_type" />
+      <Association Name="team_team_unplanned_code" Member="team_unplanned_codes" ThisKey="id" OtherKey="team_id" Type="team_unplanned_code" />
+      <Association Name="team_team" Member="teams" ThisKey="id" OtherKey="parent_id" Type="team" />
+      <Association Name="team_unplanned_code" Member="unplanned_codes" ThisKey="id" OtherKey="team_id" Type="unplanned_code" />
+      <Association Name="team_unplanned_codes_description" Member="unplanned_codes_descriptions" ThisKey="id" OtherKey="team_id" Type="unplanned_codes_description" />
+      <Association Name="team_weekly_plan" Member="weekly_plans" ThisKey="id" OtherKey="team_id" Type="weekly_plan" />
+      <Association Name="profile_team" Member="profile" ThisKey="owner_id" OtherKey="id" Type="profile" IsForeignKey="true" />
+      <Association Name="team_team" Member="team1" ThisKey="parent_id" OtherKey="id" Type="team" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.unplanned_codes" Member="unplanned_codes">
+    <Type Name="unplanned_code">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="parent_id" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="team_id" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="code" Type="System.String" DbType="VarChar(32) NOT NULL" CanBeNull="false" />
+      <Column Name="title" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="unplanned_code_weekly_task" Member="weekly_tasks" ThisKey="id" OtherKey="unplanned_code_id" Type="weekly_task" />
+      <Association Name="unplanned_code_team_unplanned_code" Member="team_unplanned_codes" ThisKey="id" OtherKey="unplanned_code_id" Type="team_unplanned_code" />
+      <Association Name="unplanned_code_unplanned_code" Member="unplanned_codes" ThisKey="id" OtherKey="parent_id" Type="unplanned_code" />
+      <Association Name="unplanned_code_unplanned_codes_description" Member="unplanned_codes_descriptions" ThisKey="id" OtherKey="unplanned_code_id" Type="unplanned_codes_description" />
+      <Association Name="unplanned_code_unplanned_code" Member="unplanned_code1" ThisKey="parent_id" OtherKey="id" Type="unplanned_code" IsForeignKey="true" />
+      <Association Name="team_unplanned_code" Member="team" ThisKey="team_id" OtherKey="id" Type="team" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.unplanned_codes_descriptions" Member="unplanned_codes_descriptions">
+    <Type Name="unplanned_codes_description">
+      <Column Name="team_id" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="unplanned_code_id" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="team_unplanned_codes_description" Member="team" ThisKey="team_id" OtherKey="id" Type="team" IsForeignKey="true" />
+      <Association Name="unplanned_code_unplanned_codes_description" Member="unplanned_code" ThisKey="unplanned_code_id" OtherKey="id" Type="unplanned_code" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.weekly_plan" Member="weekly_plans">
+    <Type Name="weekly_plan">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="profile_id" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="team_id" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="week_ending" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="plan_submitted" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="log_submitted" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="state" Type="System.String" DbType="VarChar(16)" CanBeNull="true" />
+      <Column Name="modified" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="plan_approved_by" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="log_approved_by" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Association Name="weekly_plan_weekly_task" Member="weekly_tasks" ThisKey="id" OtherKey="weekly_plan_id" Type="weekly_task" />
+      <Association Name="weekly_plan_weekly_plan_leave" Member="weekly_plan_leaves" ThisKey="id" OtherKey="weekly_plan_id" Type="weekly_plan_leave" />
+      <Association Name="profile_weekly_plan" Member="profile" ThisKey="log_approved_by" OtherKey="id" Type="profile" IsForeignKey="true" />
+      <Association Name="profile_weekly_plan1" Member="profile1" ThisKey="plan_approved_by" OtherKey="id" Type="profile" IsForeignKey="true" />
+      <Association Name="profile_weekly_plan2" Member="profile2" ThisKey="profile_id" OtherKey="id" Type="profile" IsForeignKey="true" />
+      <Association Name="team_weekly_plan" Member="team" ThisKey="team_id" OtherKey="id" Type="team" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.weekly_plan_leave" Member="weekly_plan_leaves">
+    <Type Name="weekly_plan_leave">
+      <Column Name="weekly_plan_id" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="day_of_week" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="plan_hours" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="actual_hours" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="planned" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="weekly_plan_weekly_plan_leave" Member="weekly_plan" ThisKey="weekly_plan_id" OtherKey="id" Type="weekly_plan" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.weekly_task_barrier_hours" Member="weekly_task_barrier_hours">
+    <Type Name="weekly_task_barrier_hour">
+      <Column Name="weekly_task_barrier_id" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="day_of_week" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="hours" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Association Name="weekly_task_barrier_weekly_task_barrier_hour" Member="weekly_task_barrier" ThisKey="weekly_task_barrier_id" OtherKey="id" Type="weekly_task_barrier" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.weekly_task_barriers" Member="weekly_task_barriers">
+    <Type Name="weekly_task_barrier">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="barrier_id" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="barrier_type" Type="System.String" DbType="VarChar(16) NOT NULL" CanBeNull="false" />
+      <Column Name="weekly_task_id" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="comment" Type="System.String" DbType="VarChar(512) NOT NULL" CanBeNull="false" />
+      <Column Name="ticket" Type="System.String" DbType="VarChar(64)" CanBeNull="true" />
+      <Association Name="weekly_task_barrier_weekly_task_barrier_hour" Member="weekly_task_barrier_hours" ThisKey="id" OtherKey="weekly_task_barrier_id" Type="weekly_task_barrier_hour" />
+      <Association Name="barrier_weekly_task_barrier" Member="barrier" ThisKey="barrier_id" OtherKey="id" Type="barrier" IsForeignKey="true" />
+      <Association Name="weekly_task_weekly_task_barrier" Member="weekly_task" ThisKey="weekly_task_id" OtherKey="id" Type="weekly_task" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.weekly_task_hours" Member="weekly_task_hours">
+    <Type Name="weekly_task_hour">
+      <Column Name="weekly_task_id" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="day_of_week" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="plan_hours" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="actual_hours" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Association Name="weekly_task_weekly_task_hour" Member="weekly_task" ThisKey="weekly_task_id" OtherKey="id" Type="weekly_task" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

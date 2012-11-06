@@ -1,0 +1,124 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="WALT.UIL.Site1" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+<%@ Register Assembly="AjaxControlToolkit, Version=3.5.51116.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e"
+    Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>WALT</title>
+    <link id="Link1" runat="server" rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+    <link id="Link2" runat="server" rel="icon" href="favicon.ico" type="image/ico"/>
+    <link rel="stylesheet" href="css/jquery.ui.all.css" type="text/css" media="screen" />
+ <%--   <link href="/css/jquery-ui.css" rel="stylesheet" type="text/css" media="screen" />--%>
+    <link href="/css/WALT.css" rel="stylesheet" type="text/css" media="screen" />
+    <script src="/js/jquery.js" type="text/javascript"></script>
+    <script src="/js/jquery-ui.js" type="text/javascript"></script>
+    <script src="/js/jquery.ui.core.js" type="text/javascript"></script>
+    <script src="/js/jquery.ui.widget.js" type="text/javascript"></script>
+    <script src="/js/jquery.ui.datepicker.js" type="text/javascript"></script>
+    <script src="/js/jquery.ui.button.js" type="text/javascript"></script>
+    <asp:ContentPlaceHolder ID="HeaderSubContent" runat="server"></asp:ContentPlaceHolder>
+
+    <script type="text/JavaScript" language="JavaScript">
+        $(document).ready(function () {
+            $('table[id$="Menu1"]').find('td').click(function () {
+                var link = $(this).find('a');
+
+                if (link.attr('href')) {
+                    if (link.attr('target')) {
+                        window.open(link.attr('href'), link.attr('target'));
+                    }
+                    else if (document.URL.indexOf("weekly.aspx") == -1) {
+                        window.location = link.attr('href');
+                    }
+                    else {
+                        PrepareRedirect(link.attr('href'));
+                    }
+                }
+
+                return false;
+            });
+        });
+    </script>
+
+</head>
+<body bgcolor="#cccccc">
+    <form id="form1" runat="server">
+    <iframe width="0" height="0" visible="false" id="pingFrame" frameborder="0" runat="server"></iframe>
+    <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePageMethods="true" EnablePartialRendering="true">
+    </asp:ToolkitScriptManager>
+    <table bgcolor="#ffffff" width="100%" border="0" cellpadding="5" cellspacing="0" style="border: 1px solid #999999">
+        <tr>
+            <td width="33%">
+                <img src="/images/logo.jpg" alt="Organization Logo" />
+            </td>
+            <td align="center" width="33%">
+             <a href="/" style="text-decoration: none" id="lnkMain" runat="server">
+                <asp:Label ID="Label3" runat="server" Text="WALT" Font-Bold="True" 
+                    Font-Size="24pt" Font-Names="Verdana" ForeColor="#284E98"></asp:Label></a>
+            </td>
+            <td width="33%" align="right" style="padding: 20px">
+                <asp:DropDownList ID="DropDownList1" runat="server" 
+                    AutoPostBack="True" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
+                </asp:DropDownList>
+                <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label><br />
+                <a id="lnkAlertMsg" href="/" style="font-weight: bold; color: Red" runat="server"></a>
+            </td>
+        </tr>
+        <tr>
+        <td colspan="3">
+            <asp:Panel ID="Panel1" runat="server" style="margin:10px;padding:10px;" BackColor="#FFFF66" BorderColor="Black" 
+                BorderStyle="Solid" BorderWidth="2px">
+            <asp:Label ID="Label5" runat="server" Text="" width="100%"></asp:Label></asp:Panel></td>            
+        </tr>
+        <tr><td bgcolor="#B5C7DE" colspan="3" style=" padding:0px;"><asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />           
+        <asp:Menu ID="Menu1" runat="server" style="cursor: pointer"
+                DataSourceID="SiteMapDataSource1" Orientation="Horizontal" 
+                StaticDisplayLevels="2" BackColor="#B5C7DE" 
+                ForeColor="#284E98" Font-Bold="true"
+                StaticSubMenuIndent="0px" OnMenuItemDataBound="Menu1_MenuItemDataBound" CssClass="menueClass">
+                <DataBindings>
+                <asp:MenuItemBinding DataMember="siteMapNode" NavigateUrlField="url" TextField="title" ToolTipField="description" />
+                </DataBindings>
+                <DynamicHoverStyle BackColor="#284E98" ForeColor="White" />
+                <DynamicMenuItemStyle HorizontalPadding="10px" VerticalPadding="10px" />
+                <DynamicMenuStyle BackColor="#B5C7DE" />
+                <DynamicSelectedStyle BackColor="#507CD1" ForeColor="White" />
+                <StaticHoverStyle BackColor="#284E98" ForeColor="White" />
+                <StaticMenuItemStyle HorizontalPadding="10px" VerticalPadding="10px" />
+                <StaticMenuStyle HorizontalPadding="0px" VerticalPadding="0px" />
+                <StaticSelectedStyle BackColor="#507CD1" ForeColor="White" />
+            </asp:Menu></td></tr>
+        <tr>
+            <td colspan="3">
+                <asp:UpdatePanel runat="server" ID="UpdatePanel1">
+                    <ContentTemplate>
+                        <asp:Panel ID="MessagePanel" runat="server" style="padding: 5px" 
+                            BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px">
+                            <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
+                        </asp:Panel>                        
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+            </td>            
+        </tr>
+        <tr valign="top">
+            <td colspan="3" style="padding-left: 20px; padding-right: 20px; padding-top: 15px;
+                padding-bottom: 20px;">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server" />
+                <asp:PlaceHolder ID="compError" runat="server" Visible="false">
+                    The page cannot be displayed because you are running IE 8 in compatibility mode.<br />
+                    Please go to Tools->Compatibility View Settings and uncheck Display intranet sites in Compatibiltiy View.<br />
+                    Click Close and the page will automatically refresh and display.
+                </asp:PlaceHolder>
+            </td>
+        </tr>
+        <tr>
+            <td align="left"><asp:Label ID="Label4" runat="server" Text="" Font-Size="X-Small" ForeColor="#999999"></asp:Label></td>
+            <td colspan="2" align="right"><asp:Label ID="VersionLabel" runat="server" Text="" Font-Size="X-Small" ForeColor="#999999"></asp:Label></td>
+        </tr>
+    </table>
+    </form>
+</body>
+</html>
