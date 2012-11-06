@@ -166,6 +166,8 @@ namespace WALT.UIL.Controls
 
         }
 
+        public virtual bool AutoFilter { get; set; }
+
         private bool _preLoadWithTeammates = false;
         public virtual bool PreLoadWithTeammates
         {

@@ -156,9 +156,12 @@ namespace WALT.DAL
                     "installed datetime not null default getdate());";
                 cmd.ExecuteNonQuery();
             }
-            catch
+            catch(Exception e)
             {
                 // Table must already exist
+                if (!e.Message.StartsWith("There is already an object named 'patches' in the database."))
+                    // or there's some other database error:
+                    throw e;
             }
 
             /*

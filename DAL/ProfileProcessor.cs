@@ -7,6 +7,8 @@ using System.Data.SqlClient;
 using System.Diagnostics;
 using System.DirectoryServices;
 using System.Configuration;
+using System.Data.Entity;
+using System.Data.Linq;
 
 namespace WALT.DAL
 {
@@ -55,31 +57,32 @@ namespace WALT.DAL
                 profile.OrgCode = rec.org_code ?? string.Empty;
                 profile.Manager = loadManager && rec.manager.HasValue ? CreateProfileDTO(rec.profile1, false, false) : null;
 
-                if (profile.DisplayName == null || profile.DisplayName.Length == 0)
+                if (string.IsNullOrEmpty(profile.DisplayName))
                 {
                     profile.DisplayName = profile.Username;
                 }
 
                 if (expand)
                 {
-                    var query2 = from item1 in _db.GetContext().roles
-                                 join item2 in _db.GetContext().role_profiles
-                                 on item1.id equals item2.role_id
-                                 where item2.profile_id == profile.Id
-                                 select item1;
+                    var context = _db.GetContext();
+                    var qProfileRoles = from role in context.roles
+                                 join role_profile in context.role_profiles
+                                 on role.id equals role_profile.role_id
+                                 where role_profile.profile_id == profile.Id
+                                 select role;
 
-                    foreach (var rec2 in query2)
+                    foreach (var ProfileRole in qProfileRoles)
                     {
-                        profile.Roles.Add(_mediator.GetAdminProcessor().CreateRoleDTO(rec2));
+                        profile.Roles.Add(_mediator.GetAdminProcessor().CreateRoleDTO(ProfileRole));
                     }
 
-                    var query3 = from item in _db.GetContext().preferences
-                                 where item.profile_id == profile.Id
-                                 select item;
+                    var qProfilePreferences = from preference in context.preferences
+                                 where preference.profile_id == profile.Id
+                                 select preference;
 
-                    foreach (var rec3 in query3)
+                    foreach (var ProfilePreference in qProfilePreferences)
                     {
-                        profile.Preferences[rec3.name] = rec3.value;
+                        profile.Preferences[ProfilePreference.name] = ProfilePreference.value;
                     }
                 }
             }
@@ -340,13 +343,14 @@ namespace WALT.DAL
         /// <param name="p"></param>
         public void SaveProfile(Profile p)
         {
+            var dbContext = _db.GetContext();
             long id = p.Id;
-            profile n = _db.GetContext().profiles.SingleOrDefault(x => x.id == id);
+            profile n = dbContext.profiles.SingleOrDefault(x => x.id == id);
 
             if (n == null)
             {
                 n = new profile();
-                _db.GetContext().profiles.InsertOnSubmit(n);
+                dbContext.profiles.InsertOnSubmit(n);
             }
 
             n.username = p.Username;
@@ -357,7 +361,7 @@ namespace WALT.DAL
             n.employee_id = p.EmployeeID;
             n.display_name = p.DisplayName;
             n.org_code = p.OrgCode;
-            n.profile1 = p.Manager != null ? _db.GetContext().profiles.SingleOrDefault(x => x.id == p.Manager.Id) : null; //p.Manager != null ? (long?)p.Manager.Id : null;
+            n.profile1 = p.Manager != null ? dbContext.profiles.SingleOrDefault(x => x.id == p.Manager.Id) : null; //p.Manager != null ? (long?)p.Manager.Id : null;
 
             if (n.display_name == null || n.display_name.Length == 0)
             {
@@ -369,13 +373,13 @@ namespace WALT.DAL
             p.Id = n.id;
             id = p.Id;
 
-            var query2 = from item2 in _db.GetContext().role_profiles
-                    where item2.profile_id == id
-                    select item2;
+            var qProfileRoles = from ProfileRole in dbContext.role_profiles
+                    where ProfileRole.profile_id == id
+                    select ProfileRole;
 
-            foreach (var rec2 in query2)
+            foreach (var ProfileRole in qProfileRoles)
             {
-                _db.GetContext().role_profiles.DeleteOnSubmit(rec2);
+                dbContext.role_profiles.DeleteOnSubmit(ProfileRole);
             }
 
             _db.SubmitChanges();
@@ -385,30 +389,39 @@ namespace WALT.DAL
                 role_profile rp = new role_profile();
                 rp.profile_id = id;
                 rp.role_id = r.Id;
-                _db.GetContext().role_profiles.InsertOnSubmit(rp);
+                dbContext.role_profiles.InsertOnSubmit(rp);
             }
 
             _db.SubmitChanges();
 
-            var query3 = from item3 in _db.GetContext().preferences
-                         where item3.profile_id == id
-                         select item3;
+            var qProfilePreferences = from ProfilePreference in dbContext.preferences
+                         where ProfilePreference.profile_id == id
+                         select ProfilePreference;
 
-            foreach (var rec3 in query3)
+            foreach (var ProfilePreference in qProfilePreferences)
             {
-                _db.GetContext().preferences.DeleteOnSubmit(rec3);
+                dbContext.preferences.DeleteOnSubmit(ProfilePreference);
             }
 
             _db.SubmitChanges();
 
-            for (int i = 0; i < p.Preferences.Keys.Count; i++)
+            foreach (var pref in p.Preferences.Keys)
             {
                 preference rec = new preference();
                 rec.profile_id = p.Id;
-                rec.name = p.Preferences.Keys.ElementAt(i).ToString();
-                rec.value = p.Preferences[rec.name];
-                _db.GetContext().preferences.InsertOnSubmit(rec);
+                rec.name = pref;
+                rec.value = p.Preferences[pref];
+                dbContext.preferences.InsertOnSubmit(rec);
             }
+
+            //for (int i = 0; i < p.Preferences.Keys.Count; i++)
+            //{
+            //    preference rec = new preference();
+            //    rec.profile_id = p.Id;
+            //    rec.name = p.Preferences.Keys.ElementAt(i).ToString();
+            //    rec.value = p.Preferences[rec.name];
+            //    _db.GetContext().preferences.InsertOnSubmit(rec);
+            //}
 
             _db.SubmitChanges();
         }
@@ -1014,6 +1027,8 @@ namespace WALT.DAL
             if (results.Count > 0)
             {
                 DirectoryEntry entry = results[0].GetDirectoryEntry();
+                var adp = new ADProcessor(_mediator);
+                //ad = adp.CreateADEntryDTO(parts[0], entry);
                 ad = CreateADEntryDTO(parts[0], entry);
             }
 
@@ -1040,6 +1055,39 @@ namespace WALT.DAL
             }
 
             return p;
+        }
+
+
+        public DTO.Profile AddProfile(string Username, string DisplayName, string EmployeeID, string OrgCode)
+        {
+            //DTO.Profile profile = new Profile(name);
+
+            DTO.Profile profile = null;
+
+            {
+                //string username = Domain + "\\" + Username;
+                //string username = Username;
+
+                if (_db.GetContext().profiles.SingleOrDefault(x => x.username.ToUpper() == Username.ToUpper()) != null)
+                {
+                    throw new Exception("Profile for " + Username + " already exists");
+                }
+
+                profile = new Profile();
+                profile.Username = Username;
+                profile.DisplayName = DisplayName;
+                profile.EmployeeID = EmployeeID;
+                profile.OrgCode = OrgCode;
+
+                //if (!string.IsNullOrEmpty(entry.Manager))
+                //{
+                //    profile.Manager = GetProfileByDisplayName(entry.Manager, false);
+                //}
+
+                SaveProfile(profile);
+            }
+
+            return profile;
         }
 
         /// <summary>
@@ -1246,6 +1294,10 @@ namespace WALT.DAL
             {
                 rec = CreateProfileDTO(p, expand, loadManager);
             }
+            else
+            {
+                rec = new DTO.Profile();
+            }
 
             return rec;
         }
@@ -1281,7 +1333,9 @@ namespace WALT.DAL
 
             foreach (profile p in query)
             {
-                profiles.Add(p.display_name ?? p.username);
+                // HACK: For some reason, _db.GetContext().profiles is including a "null" user with no display_name
+                if (!string.IsNullOrEmpty( p.display_name) || !string.IsNullOrEmpty(p.username))
+                    profiles.Add(p.display_name ?? p.username);
             }
 
             return profiles;

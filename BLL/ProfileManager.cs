@@ -754,6 +754,28 @@ namespace WALT.BLL
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="Username"></param>
+        /// <param name="DisplayName"></param>
+        /// <param name="EmployeeID"></param>
+        /// <param name="OrgCode"></param>
+        /// <returns></returns>
+        public DTO.Profile AddProfile(string Username, string DisplayName, string EmployeeID, string OrgCode)
+        {
+            try
+            {
+                return _dalMediator.GetProfileProcessor().AddProfile(Username, DisplayName, EmployeeID, OrgCode);
+            }
+            catch (Exception e)
+            {
+                LogError(e.ToString());
+                throw;
+            }
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public DTO.Profile AddProfileByADLookup(string search)
         {
             try

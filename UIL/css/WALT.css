@@ -648,6 +648,7 @@ table.treeTbl td.tree
     padding: 5px;
 }
 
+.Popup,
 .AddDMPopup, 
 .AddUsersPopup, 
 .AddDirectoratePopup, 
@@ -1037,6 +1038,21 @@ table.treeTbl td.tree
        outline:none 
      
 }
-
+.editProfile label
+{
+	display: block;
+	width: 200px;
+}
+.tableRow 
+{
+	display: table-row;
+}
+.tableRow label,
+.tableRow xinput
+{
+	display: table-cell;
+	padding: 0 1em; 
+	text-align: right;
+}
 
 

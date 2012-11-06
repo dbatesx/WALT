@@ -49,7 +49,7 @@ namespace WALT.UIL.Admin
 
             _profiles = new List<DTO.Profile>();
 
-            if (TextBox1.Text.Length > 0)
+            //if (TextBox1.Text.Length > 0)
             {
                 List<string> profiles = BLL.ProfileManager.GetInstance().GetProfileDisplayNameList();
 
@@ -107,6 +107,19 @@ namespace WALT.UIL.Admin
 
         protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
         {
+            // TODO: if (bManualProfiles) {
+            IdxProfile.Value = e.NewEditIndex.ToString();
+            DTO.Profile profile = _profiles[e.NewEditIndex];
+            txtUserName.Text = profile.Username;
+            txtDisplayName.Text = profile.DisplayName;
+            txtEmployeeID.Text = profile.EmployeeID;
+            txtOrgCode.Text = profile.OrgCode;
+
+            divEditProfilePopupHeader.InnerText = "Edit Profile for " + profile.DisplayName;
+
+            modalPopupExtenderEditProfile.Show();
+            // }
+
             GridView1.EditIndex = e.NewEditIndex;
             ((BoundField)GridView1.Columns[0]).ReadOnly = true;
             ((BoundField)GridView1.Columns[1]).ReadOnly = true;
@@ -206,6 +219,61 @@ namespace WALT.UIL.Admin
                     {
                         Utility.DisplayErrorMessage("No users found for " + txtAddUser.Text + ".");
                     }
+                }
+                catch (Exception ex)
+                {
+                    Utility.DisplayException(ex);
+                }
+            }
+
+            LoadData();
+        }
+
+        protected void btnEditProfile_Click(object sender, EventArgs e)
+        {
+            IdxProfile.Value = "0";
+            txtUserName.Text = txtAddUser.Text;
+            txtDisplayName.Text = txtAddUser.Text.Contains('\\') ? txtAddUser.Text.Split('\\')[1] : txtAddUser.Text;
+            txtEmployeeID.Text = "";
+            //txtOrgCode.Text = "";
+
+            divEditProfilePopupHeader.InnerText = "New Profile" + (string.IsNullOrEmpty(txtDisplayName.Text) ? "" : " for " + txtDisplayName.Text);
+
+            modalPopupExtenderEditProfile.Show();
+        }
+
+
+        protected void btnCancelEditProfile_Click(object sender, EventArgs e)
+        { }
+
+        protected void btnSaveProfile_Click(object sender, EventArgs e)
+        {
+            if (txtUserName.Text != string.Empty)
+            {
+                try
+                {
+                    DTO.Profile profile;
+                    int profile_index = int.Parse(IdxProfile.Value);
+                    if (profile_index > -1) // ie we're editing an existing profile
+                    {
+                        profile = _profiles[int.Parse(IdxProfile.Value)];
+                    }
+                    else
+                    {
+                        profile = new DTO.Profile();
+                    }
+                    // Update profile values:
+                    profile.Username = txtUserName.Text;
+                    profile.DisplayName = txtDisplayName.Text;
+                    profile.EmployeeID = txtEmployeeID.Text;
+                    profile.OrgCode = txtOrgCode.Text;
+
+                    // Save the profile:
+                    BLL.ProfileManager.GetInstance().SaveProfile(profile);
+
+                    Utility.DisplayInfoMessage("Profile for " + profile.DisplayName + " saved.");
+                    txtUserName.Text = string.Empty;
+                    txtEmployeeID.Text = string.Empty;
                 }
                 catch (Exception ex)
                 {

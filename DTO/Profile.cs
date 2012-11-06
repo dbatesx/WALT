@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace WALT.DTO
+namespace WALT.DTO // DTO: Data Transfer Object
 {
      [Serializable()]
     public class Profile : Object
@@ -26,11 +26,19 @@ namespace WALT.DTO
             get { return Id; }
         }
 
-        public Profile()
+        public Profile() : this(string.Empty)
+        {
+            //Roles = new List<Role>();
+            //Preferences = new Dictionary<string, string>();
+            //Active = true;
+        }
+
+        public Profile(string username)
         {
             Roles = new List<Role>();
             Preferences = new Dictionary<string, string>();
             Active = true;
+            Username = username;
         }
 
         public int GetSize()
