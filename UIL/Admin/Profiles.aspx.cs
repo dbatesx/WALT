@@ -11,6 +11,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 
+
 namespace WALT.UIL.Admin
 {
     public partial class Profiles : System.Web.UI.Page
@@ -26,7 +27,7 @@ namespace WALT.UIL.Admin
                 LoadData();
             }
 
-            if (BLL.ProfileManager.GetInstance().IsAllowed(DTO.Action.PROFILE_MANAGE))
+            if (IsAllowed(DTO.Action.PROFILE_MANAGE))
             {
                 btnMoveLeft.Enabled = true;
                 btnMoveRight.Enabled = true;
@@ -37,7 +38,7 @@ namespace WALT.UIL.Admin
                 btnMoveRight.Enabled = false;
             }
 
-            phSync.Visible = BLL.ProfileManager.GetInstance().IsAllowed(DTO.Action.SYSTEM_MANAGE);
+            phSync.Visible = IsAllowed(DTO.Action.SYSTEM_MANAGE);
         }
 
         void LoadData()
@@ -71,14 +72,16 @@ namespace WALT.UIL.Admin
 
         void Bind()
         {
-            if (BLL.ProfileManager.GetInstance().IsAllowed(DTO.Action.PROFILE_MANAGE))
-            {
-                GridView1.AutoGenerateEditButton = true;
-            }
-            else
-            {
-                GridView1.AutoGenerateEditButton = false;
-            }
+            //if (IsAllowed(DTO.Action.PROFILE_MANAGE))
+            //{
+            //    GridView1.AutoGenerateEditButton = true;
+            //}
+            //else
+            //{
+            //    GridView1.AutoGenerateEditButton = false;
+            //}
+            
+            GridView1.AutoGenerateEditButton = IsAllowed(DTO.Action.PROFILE_MANAGE);
 
             GridView1.DataSource = _profiles;
             GridView1.DataBind();
@@ -108,22 +111,44 @@ namespace WALT.UIL.Admin
         protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
         {
             // TODO: if (bManualProfiles) {
-            IdxProfile.Value = e.NewEditIndex.ToString();
-            DTO.Profile profile = _profiles[e.NewEditIndex];
-            txtUserName.Text = profile.Username;
-            txtDisplayName.Text = profile.DisplayName;
-            txtEmployeeID.Text = profile.EmployeeID;
-            txtOrgCode.Text = profile.OrgCode;
+            ShowProfileEditor(e.NewEditIndex);
+            //IdxProfile.Value = e.NewEditIndex.ToString();
+            //DTO.Profile profile = _profiles[e.NewEditIndex];
+            //txtUserName.Text = profile.Username;
+            //txtDisplayName.Text = profile.DisplayName;
+            //txtEmployeeID.Text = profile.EmployeeID;
+            //txtOrgCode.Text = profile.OrgCode;
 
-            divEditProfilePopupHeader.InnerText = "Edit Profile for " + profile.DisplayName;
+            //divEditProfilePopupHeader.InnerText = "Edit Profile for " + profile.DisplayName;
 
-            modalPopupExtenderEditProfile.Show();
+            //modalPopupExtenderEditProfile.Show();
             // }
 
             GridView1.EditIndex = e.NewEditIndex;
             ((BoundField)GridView1.Columns[0]).ReadOnly = true;
             ((BoundField)GridView1.Columns[1]).ReadOnly = true;
             Bind();
+        }
+
+        protected void ShowProfileEditor(int editIndex)
+        {
+            PopulateRoles(lbxRoles);
+
+            if (editIndex > -1)
+            {
+                IdxProfile.Value = editIndex.ToString();
+                DTO.Profile profile = _profiles[editIndex];
+                txtUserName.Text = profile.Username;
+                txtDisplayName.Text = profile.DisplayName;
+                txtEmployeeID.Text = profile.EmployeeID;
+                txtOrgCode.Text = profile.OrgCode;
+                SelectRoles(lbxRoles, profile.Roles);
+
+                divEditProfilePopupHeader.InnerText = "Edit Profile for " + profile.DisplayName;
+
+            }
+            modalPopupExtenderEditProfile.Show();
+
         }
 
         protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
@@ -154,16 +179,22 @@ namespace WALT.UIL.Admin
             {
                 List<DTO.Role> usersRoles = null;
 
-                if (BLL.ProfileManager.GetInstance().IsAllowed(DTO.Action.SYSTEM_MANAGE))
-                {
-                    usersRoles = _profiles[GridView1.SelectedIndex].Roles;
-                }
-                else
-                {
-                    usersRoles = (from item in _profiles[GridView1.SelectedIndex].Roles
-                                where !item.Actions.Contains(DTO.Action.SYSTEM_MANAGE)
-                                select item).ToList();
-                }
+                //if (BLL.ProfileManager.GetInstance().IsAllowed(DTO.Action.SYSTEM_MANAGE))
+                //{
+                //    usersRoles = _profiles[GridView1.SelectedIndex].Roles;
+                //}
+                //else
+                //{
+                //    usersRoles = (from item in _profiles[GridView1.SelectedIndex].Roles
+                //                where !item.Actions.Contains(DTO.Action.SYSTEM_MANAGE)
+                //                select item).ToList();
+                //}
+
+                usersRoles = (
+                    from item in _profiles[GridView1.SelectedIndex].Roles
+                    where (!item.Actions.Contains(DTO.Action.SYSTEM_MANAGE) ||
+                          IsAllowed(DTO.Action.SYSTEM_MANAGE))
+                    select item).ToList();
 
                 lstRoles.DataSource = usersRoles;
                 lstRoles.DataTextField = "Description";
@@ -173,19 +204,26 @@ namespace WALT.UIL.Admin
 
                 List<DTO.Role> unassignedRoles = null;
 
-                if (BLL.ProfileManager.GetInstance().IsAllowed(DTO.Action.SYSTEM_MANAGE))
-                {
-                    unassignedRoles = (from DTO.Role role in allRoles
-                                       where !usersRoles.Exists(x => x.Id == role.Id)
-                                       select role).ToList();
-                }
-                else
-                {
-                    unassignedRoles = (from DTO.Role role in allRoles
-                                       where !usersRoles.Exists(x => x.Id == role.Id) &&
-                                       !role.Actions.Contains(DTO.Action.SYSTEM_MANAGE)
-                                       select role).ToList();
-                }
+                //if (BLL.ProfileManager.GetInstance().IsAllowed(DTO.Action.SYSTEM_MANAGE))
+                //{
+                //    unassignedRoles = (from DTO.Role role in allRoles
+                //                       where !usersRoles.Exists(x => x.Id == role.Id)
+                //                       select role).ToList();
+                //}
+                //else
+                //{
+                //    unassignedRoles = (from DTO.Role role in allRoles
+                //                       where !usersRoles.Exists(x => x.Id == role.Id) &&
+                //                       !role.Actions.Contains(DTO.Action.SYSTEM_MANAGE)
+                //                       select role).ToList();
+                //}
+
+                unassignedRoles = (
+                    from DTO.Role role in allRoles
+                    where !usersRoles.Exists(x => x.Id == role.Id) &&
+                    (!role.Actions.Contains(DTO.Action.SYSTEM_MANAGE) ||
+                        IsAllowed(DTO.Action.SYSTEM_MANAGE))
+                    select role).ToList();
 
                 lstAvailableRoles.DataSource = unassignedRoles;
                 lstAvailableRoles.DataTextField = "Description";
@@ -242,6 +280,30 @@ namespace WALT.UIL.Admin
             modalPopupExtenderEditProfile.Show();
         }
 
+        protected void PopulateRoles(ListControl lstCtrl)
+        {
+            List<DTO.Role> allRoles = BLL.AdminManager.GetInstance().GetRoleList();
+
+            var unassignedRoles = (
+                from DTO.Role role in allRoles
+                where (!role.Actions.Contains(DTO.Action.SYSTEM_MANAGE) ||
+                    IsAllowed(DTO.Action.SYSTEM_MANAGE))
+                select role).ToList();
+
+            lstCtrl.DataSource = unassignedRoles;
+            lstCtrl.DataTextField = "Description";
+            lstCtrl.DataBind();
+
+        }
+
+        protected void SelectRoles(ListControl lstCtrl, List<DTO.Role> roles)
+        {
+            foreach (var role in roles)
+            {
+                //TODO: this will error if role no longer exists
+                lstCtrl.Items.FindByText(role.Description).Selected = true;
+            }
+        }
 
         protected void btnCancelEditProfile_Click(object sender, EventArgs e)
         { }
@@ -368,6 +430,11 @@ namespace WALT.UIL.Admin
             }
 
             return result;
+        }
+
+        private bool IsAllowed(DTO.Action action)
+        {
+            return BLL.ProfileManager.GetInstance().IsAllowed(action);
         }
 
         protected void Button1_Click(object sender, EventArgs e)

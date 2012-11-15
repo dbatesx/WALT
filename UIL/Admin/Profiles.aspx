@@ -76,6 +76,14 @@
 					<label>Org Code:</label>
 					<asp:TextBox runat="server" ID="txtOrgCode" /><br />
 				</div>
+				<div class='tableRow'>
+					<label>Manager:</label>
+					<asp:DropDownList runat="server" ID="ddlManager" ></asp:DropDownList>
+				</div>
+				<div class="tableRow">
+					<label>Role(s):</label>
+					<asp:ListBox runat="server" ID="lbxRoles" />
+				</div>
 				<asp:ProfileSelector runat="server" ID="profileSelectorEditProfile" DirectorateManagersOnly="true"
 					IncludePlanExempt="true"></asp:ProfileSelector>
 				<br />

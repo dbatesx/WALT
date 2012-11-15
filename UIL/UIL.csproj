@@ -138,6 +138,7 @@
     <Content Include="Controls\TaskTypes.ascx" />
     <Content Include="Controls\TaskUnplannedCodes.ascx" />
     <Content Include="Controls\TeamSummary.ascx" />
+    <Content Include="Controls\TwoListSelector.ascx" />
     <Content Include="css\images\ajax-loader.gif" />
     <Content Include="css\images\arrow-next-20.png" />
     <Content Include="css\images\arrow-next.png" />
@@ -329,6 +330,13 @@
     </Compile>
     <Compile Include="Controls\TreeSelector.ascx.designer.cs">
       <DependentUpon>TreeSelector.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TwoListSelector.ascx.cs">
+      <DependentUpon>TwoListSelector.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\TwoListSelector.ascx.designer.cs">
+      <DependentUpon>TwoListSelector.ascx</DependentUpon>
     </Compile>
     <Compile Include="DataSources\AlertDataSource.cs" />
     <Compile Include="DataSources\TaskListDataSource.cs" />
