@@ -76,6 +76,7 @@
 					<label>Org Code:</label>
 					<asp:TextBox runat="server" ID="txtOrgCode" /><br />
 				</div>
+                <!--
 				<div class='tableRow'>
 					<label>Manager:</label>
 					<asp:DropDownList runat="server" ID="ddlManager" ></asp:DropDownList>
@@ -83,9 +84,10 @@
 				<div class="tableRow">
 					<label>Role(s):</label>
 					<asp:ListBox runat="server" ID="lbxRoles" />
-				</div>
+				</div>-->
 				<asp:ProfileSelector runat="server" ID="profileSelectorEditProfile" DirectorateManagersOnly="true"
-					IncludePlanExempt="true"></asp:ProfileSelector>
+					IncludePlanExempt="true" Visible="False"></asp:ProfileSelector>
+                
 				<br />
 			</div>
 			<div class="Controls">

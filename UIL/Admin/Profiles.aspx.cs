@@ -269,7 +269,7 @@ namespace WALT.UIL.Admin
 
         protected void btnEditProfile_Click(object sender, EventArgs e)
         {
-            IdxProfile.Value = "0";
+            IdxProfile.Value = "-1";
             txtUserName.Text = txtAddUser.Text;
             txtDisplayName.Text = txtAddUser.Text.Contains('\\') ? txtAddUser.Text.Split('\\')[1] : txtAddUser.Text;
             txtEmployeeID.Text = "";
